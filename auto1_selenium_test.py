@@ -7,9 +7,9 @@ __date__ = "2019-01-23"
 __version__ = "0.1"
 
 import sys
+import unittest
 from time import sleep
 from selenium import webdriver
-import unittest
 from selenium.webdriver.support.select import Select
 
 class TestSearchPage(unittest.TestCase):
@@ -21,28 +21,33 @@ class TestSearchPage(unittest.TestCase):
     - Year filtering
     - View ordering (only price descending)
 
+    This test will work on all the pages of the search
     """
 
     @classmethod
     def setUpClass(cls):
-        "//a[ @class='btn btn-link' and contains(text(),'3')]"
         driver = webdriver.Firefox()
         driver.get("https://www.autohero.com/de/search/")
+        # Filter by year
         element = driver.find_element_by_xpath("//span[text()='Erstzulassung ab']")
         element.click()
         select_year = Select(driver.find_element_by_name("yearRange.min"))
-        select_year.select_by_value("5")
+        select_year.select_by_value("5") # value 5 correspond to 2015
+        # Order view by descending price
         select_sort = Select(driver.find_element_by_name("sort"))
-        select_sort.select_by_value("2")
+        select_sort.select_by_value("2") # value 2 correspond to ​Höchster Preis
         cls.price_list = []
         cls.year_list = []
         # sleep is needed in order to prevent runtime errors
         sleep(1)
         while True:
+            # get all the lists containing the cars data
             cars_table = driver.find_elements_by_xpath("//ul[@class='specList___2i0rY']")
             for car in cars_table:
+                # extract the first element of the list, containt the year
                 date = car.find_element_by_xpath("//li[@class='specItem___2gMHn']")
                 cls.year_list.append(int(date.text.split('/')[1]))
+                # get the price in format: 50.000 (fifty thousand)
                 raw_price = car.find_element_by_xpath("//div[@data-qa-selector='price']")
                 tmp = raw_price.text.split(' ')[0]
                 cls.price_list.append(int(tmp.replace('.','')))
