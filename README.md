@@ -7,6 +7,7 @@ Using [pip](https://pip.pypa.io/en/stable/installing/), you need to install:
 sudo pip install selenium
 sudo pip install nose
 ```
+Download and add the [geckodriver](https://github.com/mozilla/geckodriver/releases) to your path
 
 # Usage
 Just run:
