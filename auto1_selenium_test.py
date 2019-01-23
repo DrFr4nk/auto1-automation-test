@@ -14,14 +14,14 @@ from selenium.webdriver.support.select import Select
 
 class TestSearchPage(unittest.TestCase):
     """
-    The goal of this test is to verify the functionality of the searc page:
+    The goal of this test is to verify the functionality of the search page:
     https://www.autohero.com/de/search/
 
     The current functionality under test are:
     - Year filtering
     - View ordering (only price descending)
 
-    This test will work on all the pages of the search
+    This test will cycle on all the pages of the search
     """
 
     @classmethod
