@@ -2,8 +2,7 @@
 Create automation test for search functionality
 
 # Requirements
-
-After installing [pip](https://pip.pypa.io/en/stable/installing/) you need to install:
+Using [pip](https://pip.pypa.io/en/stable/installing/), you need to install:
 ```bash
 sudo pip install selenium
 sudo pip install nose
