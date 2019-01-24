@@ -9,6 +9,7 @@ __version__ = "0.1"
 import sys
 import unittest
 from time import sleep
+from testconfig import config
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 
@@ -27,15 +28,15 @@ class TestSearchPage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         driver = webdriver.Firefox()
-        driver.get("https://www.autohero.com/de/search/")
+        driver.get(config["website"])
         # Filter by year
         element = driver.find_element_by_xpath("//span[text()='Erstzulassung ab']")
         element.click()
         select_year = Select(driver.find_element_by_name("yearRange.min"))
-        select_year.select_by_value("5") # value 5 correspond to 2015
+        select_year.select_by_value("5")  # value 5 correspond to 2015
         # Order view by descending price
         select_sort = Select(driver.find_element_by_name("sort"))
-        select_sort.select_by_value("2") # value 2 correspond to ​Höchster Preis
+        select_sort.select_by_value("2")  # value 2 correspond to ​Höchster Preis
         cls.price_list = []
         cls.year_list = []
         # sleep is needed in order to prevent runtime errors
