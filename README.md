@@ -6,6 +6,7 @@ Using [pip](https://pip.pypa.io/en/stable/installing/), you need to install:
 ```bash
 sudo pip install selenium
 sudo pip install nose
+sudo pip install nose-testconfig
 ```
 Download and add the [geckodriver](https://github.com/mozilla/geckodriver/releases) to your path
 
@@ -13,7 +14,7 @@ Download and add the [geckodriver](https://github.com/mozilla/geckodriver/releas
 Just run:
 
 ```bash
-nosetests auto1_selenium_test.py -v
+nosetests selenium_test.py --tc-file selenium_test.yaml --tc-format yaml  -v
 ```
 
 # Output Example
