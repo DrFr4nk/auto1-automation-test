@@ -1,4 +1,4 @@
-# auto1-automation-test
+# selenium-automation-test
 Create automation test for search functionality
 
 # Requirements
